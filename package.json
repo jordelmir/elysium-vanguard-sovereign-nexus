@@ -1,0 +1,26 @@
+{
+  "name": "honor-root-toolkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pkg . --out-path dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bin": "src/cli/index.js",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^14.0.3",
+    "express": "^5.2.1",
+    "ora": "^5.4.1",
+    "socket.io": "^4.8.3",
+    "systeminformation": "^5.31.1"
+  },
+  "devDependencies": {
+    "@yao-pkg/pkg": "^6.14.1"
+  }
+}

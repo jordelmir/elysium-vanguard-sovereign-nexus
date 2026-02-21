@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honor Root Toolkit - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css?v=2.1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dark-theme">
+    <div class="glass-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">👑</span>
+                <h1>HONOR<span>ROOT</span></h1>
+            </div>
+            <nav>
+                <a href="#" class="active" data-tab="overview">
+                    <span class="icon">📊</span> Resumen
+                </a>
+                <a href="#" data-tab="modules">
+                    <span class="icon">📦</span> Módulos
+                </a>
+                <a href="#" data-tab="security">
+                    <span class="icon">🛡️</span> Seguridad
+                </a>
+                <a href="#" data-tab="terminal">
+                    <span class="icon">💻</span> Terminal
+                </a>
+                <a href="#" data-tab="files">
+                    <span class="icon">📂</span> Archivos
+                </a>
+            </nav>
+            <div class="device-status-mini">
+                <div class="status-indicator online" id="device-status-indicator"></div>
+                <span id="mini-device-name">Detectando...</span>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar herramienta...">
+                </div>
+                <div class="user-profile">
+                    <div class="badge">PREMIUM</div>
+                </div>
+            </header>
+
+            <section id="overview" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>CPU Usage</h3>
+                        <div class="stat-value" id="cpu-load">0%</div>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 0%" id="cpu-fill"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>RAM Free</h3>
+                        <div class="stat-value" id="ram-usage">0 GB</div>
+                        <div class="progress-bar">
+                            <div class="fill colored" style="width: 0%" id="ram-fill"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Battery</h3>
+                        <div class="stat-value" id="battery-level">0%</div>
+                        <div class="progress-bar">
+                            <div class="fill battery" style="width: 0%" id="battery-fill"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Storage (/data)</h3>
+                        <div class="stat-value" id="storage-usage">0 / 0</div>
+                        <div class="progress-bar">
+                            <div class="fill colored"
+                                style="width: 0%; background: #ffaa00; box-shadow: 0 0 10px #ffaa00;" id="storage-fill">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Device Security</h3>
+                        <div class="stat-value status-no" id="root-status">LOCKED</div>
+                        <p class="stat-hint" id="root-hint">Bootloader required</p>
+                    </div>
+                </div>
+
+                <div class="main-visual">
+                    <div class="device-render">
+                        <div class="glow"></div>
+                        <div class="phone-frame">
+                            <div class="screen-content">
+                                <div class="pulse-ring"></div>
+                                <div class="pulse-ring delay-1"></div>
+                                <div class="pulse-ring delay-2"></div>
+                                <div class="scanner-line"></div>
+                                <div class="core-node" id="device-model-display">V2</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="live-logs">
+                        <h4>System Telemetry</h4>
+                        <div id="log-container" class="log-lines">
+                            <div class="log-line info">Iniciando servidor de telemetría...</div>
+                            <div class="log-line success">Conexión establecida con Honor V2</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="modules" class="tab-content">
+                <div class="section-header">
+                    <h2>Magisk Modules</h2>
+                    <button class="btn-refresh" id="refresh-modules">Actualizar</button>
+                </div>
+                <div class="modules-grid" id="modules-list">
+                    <!-- Modules will be injected here -->
+                    <div class="empty-state">No se detectaron módulos instalados o se requiere acceso root.</div>
+                </div>
+            </section>
+
+            <section id="security" class="tab-content">
+                <div class="section-header">
+                    <h2>Deep Security Audit</h2>
+                    <button class="btn-refresh" id="run-audit">Ejecutar Auditoría</button>
+                </div>
+                <div class="audit-results" id="audit-results">
+                    <!-- Audit items will be injected here -->
+                    <div class="empty-state">Inicia el escaneo para ver los resultados de seguridad.</div>
+                </div>
+            </section>
+
+            <section id="terminal" class="tab-content">
+                <div class="terminal-shell">
+                    <div class="terminal-header">
+                        <div class="dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="term-title">adb@android_shell: ~</div>
+                    </div>
+                    <div class="terminal-body" id="terminal-output">
+                        <div class="term-line">Honor Root Toolkit Remote Shell [v2.0]</div>
+                        <div class="term-line">Escribe un comando para empezar...</div>
+                    </div>
+                    <div class="terminal-input-line">
+                        <span class="prompt">$</span>
+                        <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false">
+                    </div>
+                </div>
+            </section>
+
+            <section id="files" class="tab-content">
+                <div class="file-explorer-container">
+                    <div class="explorer-header">
+                        <div class="path-bar">
+                            <button id="go-up-btn" class="icon-btn">⬆️ Back</button>
+                            <input type="text" id="current-path-display" value="/" readonly>
+                        </div>
+                        <div class="explorer-actions">
+                            <button class="btn-refresh" id="refresh-files">Actualizar</button>
+                        </div>
+                    </div>
+                    <div class="file-grid" id="file-list-container">
+                        <!-- Files will be injected here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="js/app.js?v=2.1"></script>
+</body>
+
+</html>
